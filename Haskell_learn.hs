@@ -14,7 +14,11 @@ to100 = [1..100]
 evenL = [2,4..100]
 letterL = ['A','C'..'z']
 mulTable = [ [x*y | y <- [1..5]] | x <- [1..3] ]
-card = ("K",'c')
+card = ("K",'c') -- fst snd only works with 2 elem
+
+--functions
+addNum Int -> Int -> Int
+addNum x y = x + y
 
 --conditional functions
 getListItems :: [Int]->String
