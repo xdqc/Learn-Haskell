@@ -13,6 +13,11 @@ is7inList = 7 `elem` mylist
 to100 = [1..100]
 evenL = [2,4..100]
 letterL = ['A','C'..'z']
+and [all (\x -> mod x 2 == 0) [1..100], any (\x -> mod x 2 == 0) [1..100], elem 10 [1..]]
+break (\x -> x>5) [1..10]
+span  (\x -> x<6) [1..10]
+take 10 $cycle [1..7]
+dropWhile (\x -> x<5) [3,1,4,9,2,6]
 mulTable = [ [x*y | y <- [1..5]] | x <- [1..3] ]
 card = ("K",'c') -- fst snd only works with 2 elem
 
@@ -182,3 +187,9 @@ type Bust = Bool
 bust :: Hand -> Bust
 bust a = pts a > 21
 
+
+
+primes = filterPrime [2..] 
+filterPrime [] = []
+filterPrime (p:xs) = 
+          p : filterPrime [x | x <- xs, x `mod` p /= 0]
