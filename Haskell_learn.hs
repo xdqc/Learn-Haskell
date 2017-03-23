@@ -13,11 +13,11 @@ is7inList = 7 `elem` mylist
 to100 = [1..100]
 evenL = [2,4..100]
 letterL = ['A','C'..'z']
-and [all (\x -> mod x 2 == 0) [1..100], any (\x -> mod x 2 == 0) [1..100], elem 10 [1..]]
-break (\x -> x>5) [1..10]
-span  (\x -> x<6) [1..10]
-take 10 $cycle [1..7]
-dropWhile (\x -> x<5) [3,1,4,9,2,6]
+andtest = and [all (\x -> mod x 2 == 0) [1..100], any (\x -> mod x 2 == 0) [1..100], elem 10 [1..]]
+breaktest = break (\x -> x>5) [1..10]
+spantest = span  (\x -> x<6) [1..10]
+first10 = take 10 $cycle [1..7]
+droploop = dropWhile (\x -> x<5) [3,1,4,9,2,6]
 mulTable = [ [x*y | y <- [1..5]] | x <- [1..3] ]
 card = ("K",'c') -- fst snd only works with 2 elem
 
@@ -50,8 +50,11 @@ x3 x = map (\x -> mul2 x) [1..x]
 
 collatz x =
     if isEven x 
-    then floor x/2
+    then div x 2
     else x*3+1
+clz x = takeWhile (\x -> x>1) $ iterate collatz x
+clzPair x = (x,length$clz x)
+clzTrace x = map clzPair x
 
 --conditional functions
 getListItems :: [Int]->String
@@ -189,7 +192,3 @@ bust a = pts a > 21
 
 
 
-primes = filterPrime [2..] 
-filterPrime [] = []
-filterPrime (p:xs) = 
-          p : filterPrime [x | x <- xs, x `mod` p /= 0]
