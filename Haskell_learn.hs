@@ -48,14 +48,6 @@ x3 x = map (\x -> mul2 x) [1..x]
 --function operation (.)composition ($)application
 -- f $ g x = f (g x)
 
-collatz x =
-    if isEven x 
-    then div x 2
-    else x*3+1
-clz x = takeWhile (\x -> x>1) $ iterate collatz x
-clzPair x = (x,length$clz x)
-clzTrace x = map clzPair x
-
 --conditional functions
 getListItems :: [Int]->String
 getListItems [] = "empty list"
